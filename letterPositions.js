@@ -1,20 +1,4 @@
-// Actual function
-const letterPositions = function(sentence) {
-  const results = {};
-  for (let i = 0; i < sentence.length; i++) {
-    const item = sentence[i];
-    if (results[item]) {
-      results[item].push(i);
-    } else {
-      results[item] = [i];
-    }
-  }
-  delete results[' '];
-  return results;
-};
-
-
-// Test code functions
+// Test functions
 const eqArrays = function(array1, array2) {
   if (array1.length !== array2.length) {
     return false;
@@ -25,7 +9,6 @@ const eqArrays = function(array1, array2) {
   } return true;
 };
 
-
 const assertArraysEqual = function(array1, array2) {
   if (eqArrays(array1, array2)) {
     console.log(`😀😀😀 Assertion Passed: ${array1} === ${array2}`);
@@ -34,5 +17,26 @@ const assertArraysEqual = function(array1, array2) {
   }
 };
 
-// Test code
-assertArraysEqual(letterPositions("hello").e, [1]);
+
+// Actual function
+const letterPositions = (string) => {
+  let results = {};
+  for (let i = 0; i < string.length; i++) {
+    let letter = string[i];
+    if (letter !== " ") {
+      if (!results[letter]) {
+        results[letter] = [];
+      }
+      results[letter].push(i);
+    }
+  } return results;
+};
+
+
+
+// // Test code
+const sentence = letterPositions("hello");
+
+// // All functions should PASS
+assertArraysEqual(sentence["h"], [0]);
+assertArraysEqual(sentence["o"], [4]);
