@@ -1,4 +1,3 @@
-// assertEqual function
 const assertEqual = function(actual, expected) {
   if (actual === expected) {
     console.log(`😀😀😀 Assertion Passed: ${actual} === ${expected}`);
@@ -7,20 +6,27 @@ const assertEqual = function(actual, expected) {
   }
 };
 
+
 // Actual function
-const countLetters = function(string) {
-  string = string.toLowerCase().split(" ").join("");
-  let result = {};
-  for (const item of string) {
-    if (result[item]) {
-      result[item] += 1;
-    } else {
-      result[item] = 1;
+// Takes in a sentence as a string and returns a count of each of the letters in that sentence.
+const countLetters = (string) => {
+  let letters = {};
+  for (item of string) {
+    if (item !== " ") {
+      if (letters[item]) {
+        letters[item] += 1;
+      } else {
+        letters[item] = 1;
+      }
     }
-  } return result;
+  } return letters;
 };
 
+// // Test code
+const letters = countLetters("lighthouse in the house");
+// console.log(letters);
 
-// Test code
-const lighthouse = countLetters("lighthouse in the house");
-assertEqual(lighthouse["s"], 2);
+// // All tests should PASS
+assertEqual(letters["l"], 1);
+assertEqual(letters["s"], 2);
+assertEqual(letters["n"], 1);
