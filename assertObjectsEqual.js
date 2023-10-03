@@ -1,13 +1,5 @@
-// Test functions
-const assertEqual = function (actual, expected) {
-  if (actual === expected) {
-    console.log(`😀😀😀 Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`😥😥😥 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
-
-const eqArrays = function (array1, array2) {
+// eqObjects function
+const eqArrays = function(array1, array2) {
   if (array1.length !== array2.length) {
     return false;
   } for (let i = 0; i < array1.length; i++) {
@@ -17,31 +9,31 @@ const eqArrays = function (array1, array2) {
   } return true;
 };
 
-
-const eqObjects = function (object1, object2) {
-  const object1Keys = Object.keys(object1);
-  const object2Keys = Object.keys(object2);
-  if (object1Keys.length === object2Keys.length) {
-    for (let key of object1Keys) {
-      if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
-        eqArrays(object1Keys, object2Keys);
-      } else if (object1[key] === object2[key]) {
+const eqObjects = (object1, object2) => {
+  if (Object.keys(object1).length === Object.keys(object2).length) {
+    for (items in Object.keys(object1)) {
+      if (Array.isArray(object1[items]) && Array.isArray(object2[items])) {
+        eqArrays(Object.keys(object1), Object.keys(object2));
+      } else if (object1[items] === object2[items]) {
         return true;
-      } else {
-        return false;
-      }
+      } return false;
     }
-  }
-  return false;
+  } return false;
 };
-
 
 // Actual function
-const assertObjectsEqual = function (actual, expected) {
-  const inspect = require('util').inspect;
-  if (eqObjects(actual, expected)) {
-    console.log(`😀😀😀 Assert Objects Equal Passed: ${inspect(actual)} === ${inspect(expected)}`);
-  } else {
-    console.log(`😥😥😥 Assert Objects Equal Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-  }
+const assertObjectsEqual = (object1, object2) => {
+  const inspect = require('util').inspect; //util library's inspect function for more descriptive output
+  if (eqObjects(object1, object2)) {
+    return `😀😀😀 Assertion Passed: ${inspect(object1)} === ${inspect(object2)}`;
+  } return `😥😥😥 Assertion Failed: ${inspect(object1)} !== ${inspect(object2)}`;
 };
+
+
+// Test code
+const multiColorShirtObject = { colors: ["red", "blue"], size: "medium" };
+const anotherMultiColorShirtObject = { size: "medium", colors: ["red", "blue"] };
+console.log(assertObjectsEqual(multiColorShirtObject, anotherMultiColorShirtObject));
+
+const longSleeveMultiColorShirtObject = { size: "medium", colors: ["red", "blue"], sleeveLength: "long" };
+console.log(assertObjectsEqual(multiColorShirtObject, longSleeveMultiColorShirtObject));
