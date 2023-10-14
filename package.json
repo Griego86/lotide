@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@griego86/lotide",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lighthouse Lotide Library",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/Griego86/lotide.git"
   },
-  "author": "",
+  "author": "Dimitrios Athanasopoulos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Griego86/lotide/issues"
